@@ -1,35 +1,48 @@
 import { useReducer } from "react";
 
-function reducer(state, action) {
-  if (action.type === "increment") {
-    return state + 1;
-  } else if (action.type === "decrement") {
-    return state - 1;
-  } else if (action.type === "reset") {
-    return 0;
-  } else {
-    return state;
+const initialValue = {counterValue: 0, inputValue: ""};
+
+function reducer(state ={name: ""}, action) {
+  switch (action.type) {
+    case "increment" : 
+    return { ...state, counterValue : state.counterValue + 1};
+    case "decrement" :
+    return { ...state, counterValue : state.counterValue - 1};
+    case "reset" :
+    return initialValue;
+    case "setvalue" :
+    return { ...state, inputValue : action.payload};
+    case "changecount" :
+    return { ...state, counterValue : action.payload};
+    default :
+    throw new Error("Invalid Operation");
   }
 }
 
 const CounterB = () => {
-  const [counterValue, dispatch] = useReducer(reducer, 0);
+  const [state, dispatch] = useReducer(reducer, initialValue);
+
+  const increment = ()=> { dispatch ({type:"increment"})};
+  const decrement = ()=> { dispatch ({type:"decrement"})};
+  const reset = ()=> { dispatch ({type:"reset"})};
+  const handleClick = ()=> { dispatch ({type:"changecount", payload : state.inputValue - `${state.counterValue}`})};
+  const handleChange = (e)=> { dispatch ({type:"setvalue", payload : e.target.value})};
 
   return (
     <div className="app-container-opacity">
       <div className="app">
         <button
-          className="count-btn decrement-button"
-          onClick={() => dispatch({ type: "decrement" })}
+           className="count-btn btn highlight-button b-btn"
+          onClick={decrement}
         >
           -
         </button>
 
-        <div className="app-value"> {counterValue}</div>
-
+        <div className="counter__box">{state.counterValue}</div>
+        <input  className="app-value" type="text" name="number" onChange={handleChange} value={state.inputValue} />
         <button
-          className="count-btn increment-button"
-          onClick={() => dispatch({ type: "increment" })}
+          className="count-btn btn b-btn"
+          onClick={increment}
         >
           +
         </button>
@@ -37,10 +50,12 @@ const CounterB = () => {
         <div className="app-actions">
           <button
             className="reset-btn"
-            onClick={() => dispatch({ type: "reset" })}
+            onClick={reset}
           >
             Reset
           </button>
+
+           <button className="app-action-btn setvalue-btn" onClick={handleClick }>Set Value</button>
         </div>
       </div>
     </div>

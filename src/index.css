@@ -7,12 +7,15 @@
 /*App background */
 
 body {
-  background: url("/public/calm.gif") no-repeat;
+  background: url("/public/blue.gif") no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
 }
-/*App container*/
+
+
+/*App container
+
 
 
 /*App container opacity*/
@@ -31,7 +34,7 @@ body {
 
 
 .app-value {
-  width: calc(150% - 200px);
+  max-width: 8rem;
   height: 150%;
   text-align: center;
   border-radius: 5px;
@@ -50,7 +53,6 @@ display: flex;
 justify-content: center;
 align-items: center;
 min-width: 50vw;
-
 }
 
 .app-name {
@@ -58,10 +60,10 @@ min-width: 50vw;
   min-width: 15vw;
   background-image: linear-gradient(
     -225deg,
-    #f8f6f1 20%,
-    #fff800 45%,
-    #ffa060 70%,
-    #ffa406 100%
+    #fff 20%,
+    #d9f2ff 45%,
+    rgb(88, 88, 88) 70%,
+    #c0c0c0 100%
   );
   background-size: auto auto;
   background-clip: border-box;
@@ -76,6 +78,14 @@ min-width: 50vw;
   font-size: 35px;
 }
 
+.counter__box {
+  display: flex;
+  position:absolute;
+  bottom: 70%;
+  color: #fff;
+  font-size: 22px;
+}
+
 /*App counter button*/
 button {
   cursor: pointer;
@@ -83,12 +93,23 @@ button {
 
 .reset-btn {
   padding: 18px;
-  background: #c75103;
+  background: #fff;
   border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  max-width: 5rem;
+}
+
+.setvalue-btn{
+  padding: 18px;
+  background: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  margin: 2px;
+  border-radius: 3px;
+  max-width: 10rem;
 }
 .reset-btn:hover {
   color: black;
-  background:#ffc600;
+  background:#00aeff;
   transition: 2s;
 }
 .teb{
@@ -110,34 +131,44 @@ display: none;
   padding: 10px;
   max-width: 30vw;
   background: red;
-  color: #ffa060;
+  color: #ffffff;
   font-size: 18px;
   border-radius: 5px;
   cursor: pointer;
-  border:2px solid #ffa060;
+  border:2px solid #fff;
 }
-.decrement-button {
-  color: red;
-  padding: 3px;
-  border-radius: 5px; 
-  transition: 2s;
-  font-size: 60px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+
+.teb-p{
+  color:#fff;
+  font-size: large;
 }
-.increment-button {
+.p{
+  color:#fff;
+}
+
+.highlight-button {
+  color: red !important;
+}
+
+.b-btn{
+  font-size: 3rem !important;
+}
+.btn {
   color: rgba(27, 103, 0, 0.9);
-  padding: 2px;
+  padding: 3px;
+  margin: 3px;
   border-radius: 5px;
   transition: 2s;
-  font-size: 60px;
+  font-size: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  min-width: 5rem;
 }
 .decrement-button:hover {
-  color: black;
+  color: #fff;
   background: red;
 }
 .increment-button:hover {
-  color: black;
+  color: #fff;
   background: rgba(27, 103, 0, 0.9);
 }
 /*App counter text*/
@@ -165,7 +196,7 @@ Sinput[type="number"] {
 .nav-bar{
 display: flex;
 justify-content: center;
-background-color: #c75103;
+background-color: #000;
 padding: 8px 0 8px 8px;
 min-width: 50vw;
 font-size: 20px;
@@ -181,6 +212,11 @@ color: #fff;
 border-radius: 3px;
 min-width: 15vw;
 padding: 10px;
+}
+
+nav link.active{
+  background:#000 ;
+  color: rgba(255, 255, 255, 0.3);
 }
 
 @media screen and (max-width: 500px) {

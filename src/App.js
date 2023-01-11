@@ -1,6 +1,7 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
-import { Helmet } from "react-helmet-async";
+import React from 'react';
+
 
 import {
   CounterA,
@@ -10,19 +11,40 @@ import {
   TestErrorBound,
 } from "./components/index";
 
+
+const CustomNavLink = ( {to, ...props }) => {
+  let activeState = {
+    textDecoration: "none", 
+    background: "#000",
+    color: "rgba(255, 255, 255, 0.3)",
+    Transition: "all 3s",
+  };
+
+  return (
+<NavLink
+style={({isActive}) =>
+isActive ? activeState : {textDecoration: "none", color: "#fff"}
+}
+ to = {to}
+ end
+ { ...props} 
+ />
+ );
+};
+
 function NavBar() {
   return (
     <nav className="nav-bar">
-      <div className="app-name">COUNTER</div>
-      <Link to="/" className="nav-link">
+      <div className="app-name" >COUNTER</div>
+      <CustomNavLink to="/" className="nav-link" >
         CounterA
-      </Link>
-      <Link to="/counterb" className="nav-link">
+      </CustomNavLink>
+      <CustomNavLink to="/counterb" className="nav-link">
         CounterB
-      </Link>
-      <Link to="/testerrorbound" className="nav-link">
+      </CustomNavLink> 
+      <CustomNavLink to="/testerrorbound" className="nav-link">
         Test
-      </Link>
+      </CustomNavLink>
     </nav>
   );
 }
@@ -45,5 +67,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

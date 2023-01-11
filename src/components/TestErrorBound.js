@@ -6,7 +6,7 @@ const TestErrorBound = () => {
     }else {
         return (
             <div className ="teb">
-                <p>Click button to test error boundary</p>
+                <p className ="teb-p">Click button to test error boundary</p>
                 <div className="teb-boundary">{counter}</div>
                 <button className="teb-btn" onClick={increment}>Test Error Boundary</button>
             </div>
